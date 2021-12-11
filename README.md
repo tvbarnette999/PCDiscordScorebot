@@ -1,4 +1,6 @@
 # PDDiscordScorebot
+Download [here](https://github.com/tvbarnette999/PDDiscordScorebot/releases).
+
 Install steps:
 
 Note: You may need to [downgrade Beat Saber](https://steamcommunity.com/sharedfiles/filedetails/?id=1805934840) if the release is too new!
