@@ -1,4 +1,4 @@
-# PDDiscordScorebot
+# PCDiscordScorebot
 Download [here](https://github.com/tvbarnette999/PDDiscordScorebot/releases).
 
 Install steps:
