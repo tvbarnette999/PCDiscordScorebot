@@ -8,8 +8,8 @@ namespace PCDiscordScorebot
 {
     class Score
     {
-        public string levelId, songName, levelAuthor, songAuthor, difficulty;
-        public int userId, difficultyRank, difficultyRaw, score, modifiedScore, goodCuts, badCuts, missed, notGood, ok, averageCutScore, maxCutScore, maxCombo;
+        public string userId, levelId, songName, levelAuthor, songAuthor, difficulty;
+        public int difficultyRank, difficultyRaw, score, modifiedScore, goodCuts, badCuts, missed, notGood, ok, averageCutScore, maxCutScore, maxCombo;
         public bool fullCombo;
         public float leftSaberDistance, leftHandDistance, rightSaberDistance, rightHandDistance, averageCutDistanceRawScore, minDirDeviation, maxDirDeviation, averageDirDeviation, minTimeDeviation, maxTimeDeviation, averageTimeDeviation;
     }

@@ -10,7 +10,7 @@ namespace PCDiscordScorebot.Configuration
         public static PluginConfig Instance { get; set; }
         public class SubmitData
         {
-            public virtual int userId { get; set; } = 12345; // Must be 'virtual' if you want BSIPA to detect a value change and save the config automatically.
+            public virtual string userId { get; set; } = "12345"; // Must be 'virtual' if you want BSIPA to detect a value change and save the config automatically.
             public virtual string url { get; set; }
         }
 
