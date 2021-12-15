@@ -7,8 +7,7 @@ Note: You may need to [downgrade Beat Saber](https://steamcommunity.com/sharedfi
 1. Make sure BSIPA & BS Utils are installed, Mod Assistant Recommended[Follow this](https://bsmg.wiki/pc-modding.html)
 2. Run Beat Saber (Make sure core mods install)
 3. Exit Beat Saber
-4. Extract this PCDiscordScorebot .zip
+4. Extract the contents of PCDiscordScorebot.zip
 5. Place the .dll into the `Plugins` Folder in the Beat Saber install
-6. Run Beat Saber (Generate default config - if daring skip to step 8 and make the file yourself)
-7. Stop Beat Saber
-8. Edit config in `UserData/PCDiscordScorebot.json` uing settings from Dicord.
+6. Run `/config PC` in the discord to get a config file
+7. Put the config file into `Beat Saber/UserData/`
