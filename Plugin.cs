@@ -54,10 +54,17 @@ namespace PCDiscordScorebot
             Log.Debug("OnApplicationStart");
 
             BSEvents.levelCleared += submitScore;
+          //  BSEvents.menuSceneLoaded += menuSceneLoaded;
+          //  BSEvents.menuSceneActive += menuSceneActive;
+            BSEvents.levelSelected += levelSelected;
+            //  BSEvents.menuSceneLoadedFresh += menuSceneFresh;
+            BSEvents.menuSceneActive += menuSceneActive;
 
             new GameObject("PCDiscordScorebotController").AddComponent<PCDiscordScorebotController>();
 
         }
+
+
 
         private string difficultyToString(BeatmapDifficulty difficulty)
         {
@@ -92,7 +99,7 @@ namespace PCDiscordScorebot
             score.difficulty = difficultyToString(data.difficultyBeatmap.difficulty);
             score.difficultyRank = data.difficultyBeatmap.difficultyRank;
             score.difficultyRaw = (int) data.difficultyBeatmap.difficulty;
-            score.score = results.rawScore;
+            score.score = results.totalCutScore;
             score.modifiedScore = results.modifiedScore;
             score.fullCombo = results.fullCombo;
             score.goodCuts = results.goodCutsCount;
@@ -105,21 +112,44 @@ namespace PCDiscordScorebot
             score.leftSaberDistance = results.leftSaberMovementDistance;
             score.rightSaberDistance = results.rightHandMovementDistance;
             score.maxCutScore = results.maxCutScore;
-            score.averageCutScore = results.averageCutScore;
-            score.minDirDeviation = results.minDirDeviation;
-            score.averageDirDeviation = results.averageDirDeviation;
-            score.maxDirDeviation = results.maxDirDeviation;
-            score.minTimeDeviation = results.minTimeDeviation;
-            score.averageTimeDeviation = results.averageTimeDeviation;
-            score.maxTimeDeviation = results.maxTimeDeviation;
+            score.averageCutScore = 0;
+            score.minDirDeviation = 0;
+            score.averageDirDeviation = 0;
+            score.maxDirDeviation = 0;
+            score.minTimeDeviation = 0;
+            score.averageTimeDeviation = 0;
+            score.maxTimeDeviation = 0;
             score.ok = results.okCount;
             string json = JsonConvert.SerializeObject(score, Formatting.None);
             AsyncOperation op = UnityWebRequest.Post(PluginConfig.Instance.submitData.url, json).Send();
             Log.Info("Level Complete: " +  json);
 
         }
+        private void menuSceneActive()
+        {
+            Log.Info("Scene: " + UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        }
+        private void levelSelected(LevelCollectionViewController controller, IPreviewBeatmapLevel bml)
+        {
+            Log.Info("Scene: " +  UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+            var  c = Resources.FindObjectsOfTypeAll<PlatformLeaderboardViewController>().First();
 
-        [OnExit]
+            var ltv = c?.GetComponentInChildren<LeaderboardTableView>();
+            var boards = ltv?.gameObject?.transform?.Find("Viewport")?.Find("Content")?.GetComponentsInChildren<LeaderboardTableCell>();
+            //ltv.scor
+            Log.Info("LB: " + boards.Length);
+            if (boards.Length > 0)
+            {
+                Log.Info("b[0]: " + boards[0].name);
+
+            }
+
+            Log.Info("Ctrl: " + c?.gameObject.name);
+
+        }
+
+
+            [OnExit]
         public void OnApplicationQuit()
         {
             Log.Debug("OnApplicationQuit");
